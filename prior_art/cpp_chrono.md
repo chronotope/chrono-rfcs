@@ -104,6 +104,10 @@ using microfortnights = std::chrono::duration<float, std::ratio<14*24*60*60, 100
 using nanocenturies = std::chrono::duration<float, std::ratio<100*year, 1000000000>>;
 ```
 
+See [Microfortnights?! Are you
+serious?](https://github.com/HowardHinnant/date/wiki/Examples-and-Recipes#microfortnights)
+for a full example.
+
 ### clocks
 
 The `Clock` concept specifies the interface of all clocks:
