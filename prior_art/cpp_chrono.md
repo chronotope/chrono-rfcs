@@ -17,7 +17,7 @@ on top of each other:
 * calendar libraries: build on top of `date`:
   * `<iso_week>`: iso-week date calendar (Gregorian)
   * `<julian>`: Julian calendar
-  * `<islamic>`: Iaslamic calendar
+  * `<islamic>`: Islamic calendar
   * ...
 * `<tz>`: time-zone support: complete parser of the IANA data-base using the
   types of `<date>` and `<chrono>`. It adds a data-base type with facilities to
@@ -125,7 +125,7 @@ The `Clock` concept specifies the interface of all clocks:
 * `Clock::now() -> Clock::time_point` returns a time-point representing the
   current point in time.
 
-The type trait `is_clock` can be used to query whether a type is a `Clock`.
+The type trait `is_clock` can be used to query whether a type is a `Clock`. 
 
 There are different kinds of clocks:
 
@@ -201,10 +201,17 @@ The API is:
     where `D2` is a `Duration` that is appropriate for representing the
     result of the operation (it is obtained via `common_type_t<D0,D1>`)
    * time points and durations (and vice-versa): `(time_point<C,D0>, D1) -> time_point<C,D2>`
-* `min`/`max`: constants returning the time points corresponding to the smallest and largest durations
+* `min`/`max`: constants returning the time points corresponding to the smallest
+  and largest durations
 * `time_point_cast(time_point<SameClock, DifferentDuration>)`: converts the time
   point to another one on the same clock but with a different duration type.
 * `floor`, `ceil`, `round`: perform the respective operaiton on the `Duration`.
+
+Time points can be converted to a different `Clock` using the
+`clock_cast(TimePoint) -> TimePoint` function, where the time point might follow
+a sequence of conversions (e.g. to UTC, then system time, and from there to a
+different clock type). The conversions to apply are specified via the
+`clock_time_conversion` type trait.
 
 #### `<date>` extensions
 
@@ -287,13 +294,13 @@ The `<tz>` library introduces a `zoned_time` time-point.
 
 ### `<date>`
 
-* [ ] [`date`][date_description]
-* [ ] [N3344: Toward a Standard C++ `Date` Class][towards_date]
-* [ ] [`date` algorithms][date_algorithms]
+* [9] [`date`][date_description]
+* [10] [N3344: Toward a Standard C++ `Date` Class][towards_date]
+* [11] [`date` algorithms][date_algorithms]
 
 ### `<tz>`
 
-* [ ] [`tz`][tz_description]
+* [12] [`tz`][tz_description]
 
 [howard_web]: https://howardhinnant.github.io/
 [date]: https://github.com/HowardHinnant/date
